@@ -13,16 +13,26 @@ namespace MyCourse
     public class StartUp
     {
         public void ConfigureServices(IServiceCollection services)
-            {
-           
-           services.AddRazorPages();
-            }
+        
+        {
+             
+        services.AddRazorPages();
+         IMvcBuilder mvcBuilder = services
+            .AddControllersWithViews() //Oppure AddRazorPages o AddMvc
+            .AddRazorRuntimeCompilation();
+      
+         }
         public void Configure (IApplicationBuilder app,IHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+    
+           
+          
+  //Qui altri middleware, ad esempio app.UseStaticFiles();
+
 
             app.UseStaticFiles();
             
@@ -39,14 +49,11 @@ namespace MyCourse
            /*app.UseMvc(routeBuilder=>
            {
                routeBuilder.MapRoute("default","{controller}/{action}/{id}");
-           });
+           });*/
+        
 
-
-           /* app.Run(async (context) =>
-            {
-                string nome = context.Request.Query["nome"];
-                await context.Response.WriteAsync($"Hello {nome}!");
-            });*/
+           
+            
         }
     }
 }

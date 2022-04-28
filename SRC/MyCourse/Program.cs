@@ -19,12 +19,15 @@ namespace MyCourse
 {
     public class Program
     {
-        public static void Main (string[] args)
+      
+    public static void Main (string[] args)
         {
             string? v = args.FirstOrDefault();
-            string firstArgument = v;
+            //string firstArgument = v;
+            var firstArgument = v;
             CreateWebHostBuilder(args).Build().Run();
-        }
+        }    
+
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)=>
         WebHost.CreateDefaultBuilder(args)
         .UseStartup<StartUp>();
