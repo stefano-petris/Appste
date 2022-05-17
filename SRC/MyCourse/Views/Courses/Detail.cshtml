@@ -1,2 +1,113 @@
-<h1>Sono la View della action Detail di CoursesController</h1> 
-   
+@model CourseDetailViewModel;
+
+
+
+<section class="course-info">
+
+    <div class="row">
+        
+        <div class="col-md-9">
+            <h1>@Model.Title</h1>
+        </div>
+        <div class="col-md-3 d-flex">
+            <a href="#"><button>Iscriviti</button></a>
+        </div>
+        
+    </div>
+    <div class="row">
+       
+        <div class="col-md-9">
+            <div>@Model.Description</div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni est provident molestiae quam voluptatem,
+                perspiciatis in nobis necessitatibus recusandae reprehenderit reiciendis! Nam itaque perspiciatis
+                nostrum, ipsam veniam velit quia voluptatum!</p>
+            <p>Sequi libero nostrum eaque magni labore eos autem quisquam explicabo inventore velit assumenda, cum error
+                tempora, totam id nobis? Iste, ipsam. Sequi, porro officiis ex vel tempora odio quia alias.</p>
+            <p>Commodi nisi totam sint eos, quaerat, necessitatibus accusamus, sed porro inventore illum adipisci
+                deleniti eaque! Ad velit sapiente et, totam quas at obcaecati expedita commodi unde. Distinctio, ab
+                culpa! Aliquid!</p>
+            <p>Magnam, fuga incidunt quidem facilis veniam amet voluptate nisi at omnis minus tenetur animi? Velit
+                possimus commodi, aliquam praesentium sequi nemo nam magni ratione dignissimos veniam, ut doloremque
+                quia debitis?</p>
+            <p>Possimus beatae provident cum itaque ratione nostrum accusamus tempore a distinctio atque ut quisquam quo
+                recusandae magnam, minus consectetur eius, sapiente sit. A fugiat tenetur nobis eligendi at sequi iste.
+            </p>
+        </div>
+      
+        <div class="col-md-3 d-flex">
+            
+            <aside>
+                <author>@Model.Author</author>
+              
+                <div class="rating" title="@Model.Rating">
+                  @for (int i = 0; i < 5; i++)
+                     {
+                        if (Model.Rating >=i)
+                            {
+                             <i class="fa fa-lg fa-star"></i>  
+                             }
+                         else if (Model.Rating > i-1)
+                            {
+                            <i class="fa fa-lg fa-star-half-o"></i>
+                             }
+                         else{
+                             <i class="fa fa-lg fa-star-o"></i>
+                             }
+                     }
+                 </div>
+              
+                    <div class="col-md-2">
+                      <!--  19.90€</br>
+                        <S>20.90€</s>    -->
+                         @if (Model.CurrentPrice.Equals(Model.FullPrice))
+                                {
+                                 @Model.CurrentPrice;
+                                 }
+                         else
+                                 {
+                                @Model.CurrentPrice;        
+                                <br><s>@Model.FullPrice</s>
+                                }
+                                </div>
+                  
+                    
+                    </aside>
+
+        </div>
+    </div>
+
+
+</section>
+
+<section class="course-lessons">
+    <h2>Lezioni (@Model.Lessons.Count)</h2>
+    @foreach(var Lesson in Model.Lessons)
+    {
+    <hr>
+    <div class="row">
+        <div class="col-md-9 d-flex align-items-center">
+            <a href="#">@Lesson.Title</a>
+        </div>
+        <div class="col-md-3 d-flex">
+                <i class="fa fa-lg fa-clock-o"></i><time>@Lesson.Duration 
+                    <!--("m'm' 's's'")-->
+                    </time>
+        </div>
+    </div>    
+    }
+    <hr>
+
+    <div class="row-course-duration">
+        <div class="col-md-9 d-flex align-items-center">
+            Totale
+        </div>
+    
+        <div class="col-md-3 d-flex align-items-center">
+            <i class="fa fa-lg fa-clock-o"></i><time>@Model.TotalCourseDuration
+                <!--ToString("m'm' 's's'")-->
+                </time>
+        </div>   
+       
+ 
+    </div>
+</section>
