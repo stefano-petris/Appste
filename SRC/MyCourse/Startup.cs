@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using MyCourse.Models.Services.Application;
+using MyCourse.Models.Services.Infrastructure;
 
 namespace MyCourse
 {
@@ -21,7 +22,8 @@ namespace MyCourse
          IMvcBuilder mvcBuilder = services
             .AddControllersWithViews() //Oppure AddRazorPages o AddMvc
             .AddRazorRuntimeCompilation();
-        services.AddTransient<ICourseService, CourseService>();
+        services.AddTransient<ICourseService, AdoNetCourseService>(); // nuovo servizio applicativo
+        services.AddTransient<IDatabaseAccessor, SqliteDatabaseAccessor>(); //nuovo servizio infrastrutturale
          }
         public void Configure (IApplicationBuilder app,IHostEnvironment env)
         {
