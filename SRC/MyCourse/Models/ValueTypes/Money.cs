@@ -14,6 +14,11 @@ namespace MyCourse.Models.ValueTypes
             Amount=amount;
             Currency=currency;
         }
+
+        public Money(object value, object v)
+        {
+        }
+
         private decimal amount=0;
 
         public decimal Amount
